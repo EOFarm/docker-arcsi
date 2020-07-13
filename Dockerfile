@@ -7,7 +7,7 @@ LABEL maintainer="neteler@mundialis.de"
 RUN conda update -n base conda
 RUN conda config --add channels conda-forge && \
 conda update --yes conda && \
-conda install --yes python=3.7 arcsi cgal && \
+conda install --yes python=3.7 arcsi gdal && \
 conda clean --yes -t
 
 # set gdal paths
