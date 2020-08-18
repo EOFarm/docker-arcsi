@@ -4,11 +4,14 @@ LABEL authors="Angelos Tzotsos,Markus Neteler"
 LABEL maintainer="neteler@mundialis.de"
 
 # update conda and install arcsi using conda package manager and clean up (rm tar packages to save space)
-RUN conda update -n base conda
+RUN conda update --yes -n base conda
 RUN conda config --add channels conda-forge && \
 conda update --yes conda && \
-conda install --yes python=3.7 arcsi cgal && \
+conda install --yes -c conda-forge arcsi=3.8.1 cgal && \
 conda clean --yes -t
+
+# add debian packages required by arcsi
+RUN apt-get update && apt-get install -y libcgal13
 
 # set gdal paths
 ENV GDAL_DRIVER_PATH /opt/conda/lib/gdalplugins:$GDAL_DRIVER_PATH
